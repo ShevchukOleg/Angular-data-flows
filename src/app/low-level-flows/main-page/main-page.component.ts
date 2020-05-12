@@ -40,8 +40,15 @@ export class MainPageComponent implements OnInit, OnDestroy {
   simpleData: string;
 
   /**
+   * властивість призначена для передачі через сетер дочірньої компоненти з обробкою
+   */
+  staticCode = 'asdf1234ghjk';
+
+  /**
    * визначення статичних данних для передачі через шаблон у дочірню компоненту
    */
+
+  title = 'Low level data flows';
   ngOnInit(): void {
     this.mainInfo = {
       user: 'John',
@@ -70,6 +77,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
   changeSimpleData() {
     this.simpleData = Date.now().toString();
     console.log(this.simpleData);
+  }
+
+  updatePosts(e) {
+    this.posts.unshift(Object.assign({}, e));
   }
 
   ngOnDestroy(): void {
