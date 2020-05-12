@@ -1,0 +1,14 @@
+<div>
+  <p>User name: {{userInfo.user}}</p>
+  <p>User id: {{userInfo.id}}</p>
+  <p>Role: {{userInfo.role}}</p>
+  <p>Timestamp throw @Input(): {{userInfo.timeStamp | date: 'mediumTime'}}</p>
+  <p>String data {{stringData ?  stringData : ''}}</p>
+  <p>Timestamp throw OnChanges: {{userInfo.timeStamp | date: 'mediumTime'}}</p>
+  <p>Number of OnChanges Calls: {{onChangesCount}} </p>
+
+  <input type="text" class="form-control" placeholder="Title...">
+  <input type="text" class="form-control" placeholder="Text...">
+
+  <button class="btn">Добавить пост</button>
+</div>

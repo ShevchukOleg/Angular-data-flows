@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Low level data flows</h1>
+  <div class="card">
+    <button class="btn" (click)="startPulsar()">Start</button>
+    <button class="btn" (click)="stopPulsar()">Stop</button>
+    <button class="btn" (click)="changeSimpleData()">Add stringifyed time</button>
+  </div>
+  <!-- через директиву @Input()  здійснюємться передача даних перший о'єкт другий строка -->
+  <app-post-form [userInfo]="mainInfo" [stringData]="simpleData"></app-post-form>
+
+  <hr />
+
+  <app-post *ngFor="let singlePost of posts" [post]="singlePost"></app-post>
+</div>
