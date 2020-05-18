@@ -55,7 +55,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       id: 1,
       role: 'admin'
     };
-
+    // зміна поля об'єкту без активації зайвих циклів у дочірній компоненті
     this.service.outgoingStream.pipe(takeUntil(this.unsubscribe$)).subscribe(
       (data) => {
         this.mainInfo.timeStamp = data.date;
@@ -63,13 +63,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
       }
     );
   }
-
-
-
+  /**
+   * активція методу головного червісу на регуляоне оновлення даних
+   */
   stopPulsar() {
     this.service.stopPuls();
   }
-
+  // зупинка роботи методу асинхронної регулрної видачі даних
   startPulsar() {
     this.service.startPuls();
   }
@@ -77,6 +77,25 @@ export class MainPageComponent implements OnInit, OnDestroy {
   changeSimpleData() {
     this.simpleData = Date.now().toString();
     console.log(this.simpleData);
+  }
+  /**
+   * метод зміни валастивості timeStamp основного об'єкту mainInfo у компоненті вищого рівня
+   * *при простій зміні властивості об'єкту що передається в дочірню компоненту не српацює активація методу OnChanges
+   * *при зміні посилання на весь передаваємий об'єкт метод OnChanges - спарцює
+   * @param param - опцыя ипу модифыкації
+   */
+  changeUserTimestamp(param: string) {
+    switch (param) {
+      case 'obj':
+        const user = Object.assign({}, this.mainInfo);
+        user.timeStamp = new Date();
+        this.mainInfo = Object.assign({}, user);
+        break;
+      case 'prop':
+        console.log(this.mainInfo);
+        this.mainInfo.timeStamp = new Date();
+        break;
+    }
   }
 
   updatePosts(e) {

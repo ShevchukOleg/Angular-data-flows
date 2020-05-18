@@ -34,6 +34,7 @@ body {
 }
 
 .col {
+  padding: 7px 15px;
   max-width: 95%;
   flex: 1 1 95%;
 }
@@ -106,4 +107,14 @@ textarea {
 
 hr {
   margin: .5rem 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.simpleBorder {
+  background-color: #ccc;
+  border: 1px solid #333;
+  border-radius: 5px;
 }

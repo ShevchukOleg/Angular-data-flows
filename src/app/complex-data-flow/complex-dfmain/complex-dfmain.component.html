@@ -1,1 +1,14 @@
-<p>Complex data flow works!</p>
+<h2 class="text-center">Complex data flow works!</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col simpleBorder">
+      <h3>Paragraph state management through directive</h3>
+      <p appChangeStyle='blue' [fontSize]="specialElementSize" [borderLeft]="borderParams">This paragrapf use atribute
+        directive</p>
+      <p>Font-size of paragraf should be {{specialElementSize}}px after visit</p>
+      <button class="btn" (click)="changeSize(18)">Font-size: 18 px</button>
+      <button class="btn" (click)="changeSize(14)">Font-size: 14 px</button>
+    </div>
+  </div>
+</div>

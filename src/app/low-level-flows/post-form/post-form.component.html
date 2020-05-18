@@ -6,10 +6,13 @@
   <p>String data {{simpleData ?  simpleData : ''}}</p>
   <p>Timestamp throw OnChanges: {{userInfo.timeStamp | date: 'mediumTime'}}</p>
   <p>Number of OnChanges Calls: {{onChangesCount}} </p>
-  <p>Data resiving throw setter: {{code}}</p>
+  <p #codeValue>Data resiving throw setter: {{code}}</p>
+  <p>Template variable repeat: {{codeValue.textContent}}</p>
+  <input type="text" class="form-control" [(ngModel)]="newCode" placeholder="Change code...">
   <input type="text" class="form-control" placeholder="Title..." [(ngModel)]="newPost.title"
     (ngModelChange)="immediateDataUpdate($event)">
   <input type="text" class="form-control" placeholder="Text..." [(ngModel)]="newPost.text">
+  <h3>Cahge parent title throw two way binding</h3>
   <input type="text" class="form-control" placeholder="Modify parent title" [ngModel]="parentTitle"
     (ngModelChange)="onTitleChange($event)">
 

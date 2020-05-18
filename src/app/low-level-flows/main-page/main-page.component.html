@@ -4,6 +4,8 @@
     <button class="btn" (click)="startPulsar()">Start</button>
     <button class="btn" (click)="stopPulsar()">Stop</button>
     <button class="btn" (click)="changeSimpleData()">Add stringifyed time</button>
+    <button class="btn" (click)="changeUserTimestamp('obj')">Change timestamp as new input object</button>
+    <button class="btn" (click)="changeUserTimestamp('prop')">Change timestamp as input object property</button>
   </div>
   <!-- через директиву @Input()  здійснюємться передача даних перший о'єкт другий строка -->
   <app-post-form (createPost)="updatePosts($event)" [(parentTitle)]="title" [userInfo]="mainInfo"

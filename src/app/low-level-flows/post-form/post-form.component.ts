@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter, ViewChild, ElementRef, ContentChild, ChangeDetectionStrategy } from '@angular/core';
 import { Main, Post } from '../../globalInterfaces';
 
 @Component({
   selector: 'app-post-form',
   templateUrl: './post-form.component.html',
-  styleUrls: ['./post-form.component.scss']
+  styleUrls: ['./post-form.component.scss'],
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostFormComponent implements OnInit, OnChanges {
 
@@ -32,6 +33,8 @@ export class PostFormComponent implements OnInit, OnChanges {
       this._postModify = 'default';
     }
   }
+
+  @ViewChild('codeValue', { static: false }) domElement: ElementRef;
 
   insadeDatefromOnCahnge: any;
   onChangesCount = 0;
@@ -62,6 +65,10 @@ export class PostFormComponent implements OnInit, OnChanges {
         }
       }
     }
+    console.log('ViewChild: ', this.domElement);
+    if (this.domElement) {
+      this.domElement.nativeElement.classList.toggle('some');
+    }
   }
 
   addPost() {
@@ -81,9 +88,13 @@ export class PostFormComponent implements OnInit, OnChanges {
   }
 
   onTitleChange(value: string) {
-    this.parentTitle = value;
-    console.log(this.parentTitle);
+    // this.parentTitle = value; - можна не модифікувати, після зміни у батьківській надійде нове значення
+    console.log('Prev value in child component: ', this.parentTitle);
     this.parentTitleChange.emit(value);
+  }
+
+  set newCode(code) {
+    this._postModify = code;
   }
 
   get code() {

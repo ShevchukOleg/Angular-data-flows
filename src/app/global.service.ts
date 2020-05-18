@@ -24,8 +24,9 @@ export class GlobalService {
   }
 
   stopPuls() {
-    console.log('Pulsar stoped');
-    this.pulsar.unsubscribe();
+    if (this.pulsar) {
+      this.pulsar.unsubscribe();
+      console.log('Pulsar stoped');
+    }
   }
-
 }
