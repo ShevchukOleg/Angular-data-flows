@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, Renderer2, HostListener, Input, HostBinding } from '@angular/core';
 
 @Directive({
   selector: '[appChangeStyle]'
@@ -16,7 +16,8 @@ export class StyleDirective {
   /**
    * Вхідна властивість що керує межою елементу
    */
-  @Input() borderLeft: { borderRadius: number, borderWidth: number, borderStyle: string, borderColor: string }
+  @Input() borderLeft: { borderRadius: number, borderWidth: number, borderStyle: string, borderColor: string };
+  private fontWeight = 'normal';
   nativeElement: HTMLElement;
   counter = 0;
   constructor(private elemtnt: ElementRef, private render: Renderer2) {
@@ -45,6 +46,15 @@ export class StyleDirective {
     this.elemtnt.nativeElement.style.color = 'black';
     this.toggleElementState(false);
   }
+
+  /**
+   * метод прив'язки до внутрішньої властивості
+   * у якості параметру приймає цільову CSS властивість
+   */
+  @HostBinding('style.fontWeight') get getFontWeight() {
+    return this.fontWeight;
+  }
+
   /**
    * метод зміни властивотей елемету при подіях курсору
    * @param flag - тригер станів
