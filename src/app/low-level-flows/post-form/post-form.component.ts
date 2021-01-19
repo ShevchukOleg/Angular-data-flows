@@ -53,7 +53,7 @@ export class PostFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    for (let propName in changes) {
+    for (const propName in changes) {
       if (changes.hasOwnProperty(propName)) {
         let change = changes[propName];
         let current = JSON.stringify(change.currentValue);
@@ -88,7 +88,7 @@ export class PostFormComponent implements OnInit, OnChanges {
   }
 
   onTitleChange(value: string) {
-    // this.parentTitle = value; - можна не модифікувати, після зміни у батьківській надійде нове значення
+    // this.parentTitle = value; - можна не модифікувати, після зміни у батьківську надійде нове значення
     console.log('Prev value in child component: ', this.parentTitle);
     this.parentTitleChange.emit(value);
   }
